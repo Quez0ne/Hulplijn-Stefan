@@ -1,5 +1,12 @@
 package ghost_gaming.plugin.hulplijnstefan;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,14 +17,17 @@ public class HulplijnStefan extends JavaPlugin {
 	
 	public static final Object pluginMSG = ChatColor.AQUA + "[Hulplijn Stefan] " + ChatColor.RESET;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onEnable() {
+		
 		getLogger().info("Hulplijn Stefan has been Activated");
+		
 	}
 	
 	@Override
 	public void onDisable() {
-	
+		
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -25,14 +35,13 @@ public class HulplijnStefan extends JavaPlugin {
 		if (cmd.getName().equalsIgnoreCase("stefan")) {
 			if(sender instanceof Player){
 				player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
-				
 				return true;
 			}else{
 				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
 				return true;
 			}
-		
-		}else if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){
+		}
+		if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){
 			if(args.length > 1){
 				
 				StringBuilder str = new StringBuilder();
@@ -41,13 +50,14 @@ public class HulplijnStefan extends JavaPlugin {
                 }
                 String bc = str.toString();
                 player.sendMessage(bc);
-				
+                
+                player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
+                return true;
 			}
-			
 			return true;
+			
 		}
 		
 		return false;
 	}
-
 }

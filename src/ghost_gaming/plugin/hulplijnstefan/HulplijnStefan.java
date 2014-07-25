@@ -21,11 +21,9 @@ public class HulplijnStefan extends JavaPlugin {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-	
+		Player player = (Player)sender;
 		if (cmd.getName().equalsIgnoreCase("stefan")) {
 			if(sender instanceof Player){
-				Player player = (Player)sender;
-				
 				player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
 				
 				return true;
@@ -33,7 +31,20 @@ public class HulplijnStefan extends JavaPlugin {
 				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
 				return true;
 			}
+		
+		}else if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){
+			if(args.length > 1){
+				
+				StringBuilder str = new StringBuilder();
+                for (int i = 0; i < args.length; i++) {
+                        str.append(args[i] + " ");
+                }
+                String bc = str.toString();
+                player.sendMessage(bc);
+				
+			}
 			
+			return true;
 		}
 		
 		return false;

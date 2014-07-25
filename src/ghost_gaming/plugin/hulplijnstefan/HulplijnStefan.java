@@ -1,5 +1,6 @@
 package ghost_gaming.plugin.hulplijnstefan;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -7,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class HulplijnStefan extends JavaPlugin {
 	
-	public static final String pluginMSG = "[HulplijnStefan] ";
+	public static final Object pluginMSG = ChatColor.AQUA + "[Hulplijn Stefan] " + ChatColor.RESET;
 
 	@Override
 	public void onEnable() {
@@ -29,7 +30,7 @@ public class HulplijnStefan extends JavaPlugin {
 				
 				return true;
 			}else{
-				sender.sendMessage(pluginMSG + "Player Command Only!");
+				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
 				return true;
 			}
 			

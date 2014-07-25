@@ -5,3 +5,6 @@ commands:
     stefan:
         description: Voegt een bericht toe aan stefans hulplijn
         usage: /<command>
+    test:
+        description: Testmiddel om alle args te krijgen
+        usage: /<command> <args>

@@ -1,5 +1,10 @@
 package ghost_gaming.plugin.hulplijnstefan;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -22,6 +27,21 @@ public class HulplijnStefan extends JavaPlugin {
 		
 	}
 	
+	public void logToFile(String msg){
+		try{
+			File dataFolder = getDataFolder();
+			if(!dataFolder.exists()) dataFolder.mkdir();
+		
+		File saveTo = new File(getDataFolder(), "HelpList.txt");
+		if(!saveTo.exists()) saveTo.createNewFile();
+		FileWriter fw = new FileWriter(saveTo, true);
+		PrintWriter pw = new PrintWriter(fw);
+		pw.println(msg);
+		pw.flush();
+		pw.close();
+		}catch(IOException e){e.printStackTrace();}
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player)sender;
 		if (cmd.getName().equalsIgnoreCase("stefan")) {
@@ -41,8 +61,9 @@ public class HulplijnStefan extends JavaPlugin {
                         str.append(args[i] + " ");
                 }
                 String bc = str.toString();
-                player.sendMessage(player.getName() + bc);
+                player.sendMessage(player.getName()+ ": " + bc);
                 
+                logToFile(player.getName()+ ": " + bc);
                 player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
                 return true;
 			}

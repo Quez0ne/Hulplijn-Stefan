@@ -1,12 +1,5 @@
 package ghost_gaming.plugin.hulplijnstefan;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,7 +10,6 @@ public class HulplijnStefan extends JavaPlugin {
 	
 	public static final Object pluginMSG = ChatColor.AQUA + "[Hulplijn Stefan] " + ChatColor.RESET;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onEnable() {
 		
@@ -49,7 +41,7 @@ public class HulplijnStefan extends JavaPlugin {
                         str.append(args[i] + " ");
                 }
                 String bc = str.toString();
-                player.sendMessage(bc);
+                player.sendMessage(player.getName() + bc);
                 
                 player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
                 return true;

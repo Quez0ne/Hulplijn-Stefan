@@ -1,6 +1,6 @@
 name: HulplijnStefan
 main: ghost_gaming.plugin.hulplijnstefan.HulplijnStefan
-version: 1.1
+version: 1.2
 commands:
     stefan:
         description: Adds a message in the Stefan Help List

@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * Licensed under the Apache License, Version 2.0
  * 
  * @author Matthbo & ghost_gaming
+ * YAY!
  */
 public class HulplijnStefan extends JavaPlugin {
 	

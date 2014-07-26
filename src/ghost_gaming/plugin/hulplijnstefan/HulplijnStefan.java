@@ -108,6 +108,21 @@ public class HulplijnStefan extends JavaPlugin {
 				return true;
 			}
 		}
+		if(cmd.getName().equalsIgnoreCase("clearhelplist")){
+			if(sender instanceof Player){
+				Player player = (Player)sender;
+				if(player.isOp() || player.hasPermission("hulplijnstefan.clearhelplist")){
+					
+					//doe iets hier
+					
+					return true;
+				}else{
+					return true;
+				}
+			}else{
+				return true;
+			}
+		}
 		return false;
 	}
 }

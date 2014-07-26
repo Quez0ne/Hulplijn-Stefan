@@ -1,10 +1,10 @@
 name: HulplijnStefan
 main: ghost_gaming.plugin.hulplijnstefan.HulplijnStefan
-version: 1.0
+version: 1.1
 commands:
     stefan:
         description: Voegt een bericht toe aan stefans hulplijn
-        usage: /<command>
-    test:
-        description: Testmiddel om alle args te krijgen
         usage: /<command> <args>
+    test:
+        description: Voegt een bericht toe aan stefans hulplijn
+        usage: /<command> <args>desc

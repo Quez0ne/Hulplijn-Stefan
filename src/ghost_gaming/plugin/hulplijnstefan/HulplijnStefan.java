@@ -11,6 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**This plugin is made for MartialCraft (play.martialcraft.net)
+ * 
+ * Licensed under the Apache License, Version 2.0
+ * 
+ * @author Matthbo & ghost_gaming
+ */
 public class HulplijnStefan extends JavaPlugin {
 	
 	public static final Object pluginMSG = ChatColor.AQUA + "[Hulplijn Stefan] " + ChatColor.RESET;
@@ -24,7 +30,7 @@ public class HulplijnStefan extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		
+		getLogger().info("Hulplijn is now Closed! we'll be back Tomorrow");
 	}
 	
 	public void logToFile(String msg){
@@ -43,17 +49,34 @@ public class HulplijnStefan extends JavaPlugin {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		Player player = (Player)sender;
 		if (cmd.getName().equalsIgnoreCase("stefan")) {
 			if(sender instanceof Player){
-				player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
-				return true;
+				Player player = (Player)sender;
+				if(args.length > 1){
+					
+					StringBuilder str = new StringBuilder();
+	                for (int i = 0; i < args.length; i++) {
+	                        str.append(args[i] + " ");
+	                }
+	                String bc = str.toString();
+	                //player.sendMessage(player.getName()+ ": " + bc);
+	                
+	                logToFile(player.getName()+ ": " + bc);
+	                player.sendMessage(pluginMSG + "Thank you " + player.getName() + ChatColor.DARK_AQUA +", Your question wil be awnserd as soon as possible!");
+	                return true;
+				}else{
+					player.sendMessage(pluginMSG + "" + ChatColor.RED + "Usage /stefan <args>");
+					return true;
+				}
 			}else{
-				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
+				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Wat denk je zelf");
+				sender.sendMessage("matthbo was here!");
 				return true;
 			}
 		}
-		if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){
+		return false;
+		
+		/*if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){
 			if(args.length > 1){
 				
 				StringBuilder str = new StringBuilder();
@@ -64,13 +87,13 @@ public class HulplijnStefan extends JavaPlugin {
                 player.sendMessage(player.getName()+ ": " + bc);
                 
                 logToFile(player.getName()+ ": " + bc);
-                player.sendMessage(pluginMSG + "Your question wil be awnserd as soon as possible!");
+                player.sendMessage(pluginMSG + "Thank you " + player.getName() + ", Your question wil be awnserd as soon as possible!");
                 return true;
 			}
 			return true;
 			
 		}
 		
-		return false;
+		return false;*/
 	}
 }

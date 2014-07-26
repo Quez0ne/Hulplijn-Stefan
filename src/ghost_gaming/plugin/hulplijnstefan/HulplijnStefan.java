@@ -74,6 +74,18 @@ public class HulplijnStefan extends JavaPlugin {
 				return true;
 			}
 		}
+		if(cmd.getName().equalsIgnoreCase("helplist")){
+			if(sender instanceof Player){
+				Player player = (Player)sender;
+				
+				//hier komt interactie met de player!
+				
+				return true;
+			}else{
+				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
+				return true;
+			}
+		}
 		return false;
 		
 		/*if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){

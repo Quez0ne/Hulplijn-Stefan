@@ -1,6 +1,8 @@
 package ghost_gaming.plugin.hulplijnstefan;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +17,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  * 
  * Licensed under the Apache License, Version 2.0
  * 
- * @author Matthbo & ghost_gaming
  * YAY!
+ * 
+ * @author Matthbo & ghost_gaming
  */
 public class HulplijnStefan extends JavaPlugin {
 	
@@ -39,14 +42,27 @@ public class HulplijnStefan extends JavaPlugin {
 			File dataFolder = getDataFolder();
 			if(!dataFolder.exists()) dataFolder.mkdir();
 		
-		File saveTo = new File(getDataFolder(), "HelpList.txt");
-		if(!saveTo.exists()) saveTo.createNewFile();
-		FileWriter fw = new FileWriter(saveTo, true);
-		PrintWriter pw = new PrintWriter(fw);
-		pw.println(msg);
-		pw.flush();
-		pw.close();
+			File saveTo = new File(getDataFolder(), "HelpList.txt");
+			if(!saveTo.exists()) saveTo.createNewFile();
+			FileWriter fw = new FileWriter(saveTo, true);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.println(msg);
+			pw.flush();
+			pw.close();
 		}catch(IOException e){e.printStackTrace();}
+	}
+	
+	public void fileToMessage(CommandSender sender){
+		try{
+			File dataFolder = getDataFolder();
+			
+			BufferedReader br = new BufferedReader(new FileReader(dataFolder + "/HelpList.txt"));
+			String str;
+			while((str = br.readLine()) != null){
+				sender.sendMessage(str);
+			}
+			br.close();
+		}catch(Exception e){e.printStackTrace();}
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -78,35 +94,20 @@ public class HulplijnStefan extends JavaPlugin {
 		if(cmd.getName().equalsIgnoreCase("helplist")){
 			if(sender instanceof Player){
 				Player player = (Player)sender;
-				
-				//hier komt interactie met de player!
-				
-				return true;
+				if(player.isOp() || player.hasPermission("hulplijnstefan.readhelplist")){
+					
+					player.sendMessage(pluginMSG + "Loading File...");
+					fileToMessage(player);
+					
+					return true;
+				}else{
+					return true;
+				}
 			}else{
 				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
 				return true;
 			}
 		}
 		return false;
-		
-		/*if(cmd.getName().equalsIgnoreCase("test") && sender instanceof Player){
-			if(args.length > 1){
-				
-				StringBuilder str = new StringBuilder();
-                for (int i = 0; i < args.length; i++) {
-                        str.append(args[i] + " ");
-                }
-                String bc = str.toString();
-                player.sendMessage(player.getName()+ ": " + bc);
-                
-                logToFile(player.getName()+ ": " + bc);
-                player.sendMessage(pluginMSG + "Thank you " + player.getName() + ", Your question wil be awnserd as soon as possible!");
-                return true;
-			}
-			return true;
-			
-		}
-		
-		return false;*/
 	}
 }

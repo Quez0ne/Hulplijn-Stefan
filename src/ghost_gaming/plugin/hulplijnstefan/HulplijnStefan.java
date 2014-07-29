@@ -2,6 +2,7 @@ package ghost_gaming.plugin.hulplijnstefan;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -113,7 +114,20 @@ public class HulplijnStefan extends JavaPlugin {
 				Player player = (Player)sender;
 				if(player.isOp() || player.hasPermission("hulplijnstefan.clearhelplist")){
 					
-					//doe iets hier
+					player.sendMessage(pluginMSG + "Clearing Helplist...");
+					FileOutputStream writer = new FileOutputStream("HelpList.txt");
+					try {
+						writer.write(0);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						writer.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 					return true;
 				}else{

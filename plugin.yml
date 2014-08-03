@@ -1,10 +1,13 @@
 name: HulplijnStefan
 main: ghost_gaming.plugin.hulplijnstefan.HulplijnStefan
-version: 1.2
+version: 1.3
 commands:
     stefan:
         description: Adds a message in the Stefan Help List
         usage: /<command> <args>
     helplist:
         description: Shows the HelpList.txt in chat
+        usage: /<command>
+    clearhelplist:
+        description: Clears HelpList.exe
         usage: /<command>

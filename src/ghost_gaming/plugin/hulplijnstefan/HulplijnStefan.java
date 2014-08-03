@@ -2,8 +2,6 @@ package ghost_gaming.plugin.hulplijnstefan;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +34,7 @@ public class HulplijnStefan extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		getLogger().info("Hulplijn is now Closed! we'll be back Tomorrow");
+		getLogger().info("Hulplijn is now Closed! We'll be back Tomorrow");
 	}
 	
 	public void logToFile(String msg){
@@ -44,7 +42,7 @@ public class HulplijnStefan extends JavaPlugin {
 			File dataFolder = getDataFolder();
 			if(!dataFolder.exists()) dataFolder.mkdir();
 		
-			File saveTo = new File(getDataFolder(), "HelpList.txt");
+			File saveTo = new File(dataFolder, "HelpList.txt");
 			if(!saveTo.exists()) saveTo.createNewFile();
 			FileWriter fw = new FileWriter(saveTo, true);
 			PrintWriter pw = new PrintWriter(fw);
@@ -65,6 +63,19 @@ public class HulplijnStefan extends JavaPlugin {
 			}
 			br.close();
 		}catch(Exception e){e.printStackTrace();}
+	}
+	
+	public void clearList(){
+		try{
+		File dataFolder = getDataFolder();
+		
+		File list = new File(dataFolder, "HelpList.txt");
+		
+		list.delete();
+		list.createNewFile();
+		
+		}catch(Exception e){e.printStackTrace();}
+		
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -88,7 +99,7 @@ public class HulplijnStefan extends JavaPlugin {
 					return true;
 				}
 			}else{
-				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Wat denk je zelf");
+				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "What do you think?");
 				sender.sendMessage("matthbo was here!");
 				return true;
 			}
@@ -116,31 +127,31 @@ public class HulplijnStefan extends JavaPlugin {
 				if(player.isOp() || player.hasPermission("hulplijnstefan.clearhelplist")){
 					
 					player.sendMessage(pluginMSG + "Clearing Helplist...");
-					FileOutputStream writer = null;
+					clearList();
+					
+					/*FileOutputStream writer = null;
 					try {
 						writer = new FileOutputStream("HelpList.txt");
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
+					} catch (FileNotFoundException e) {
 						e1.printStackTrace();
 					}
 					try {
 						writer.write(0);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					try {
 						writer.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}*/
 					
 					return true;
 				}else{
 					return true;
 				}
 			}else{
+				sender.sendMessage(pluginMSG + "" + ChatColor.RED + "Player Command Only!");
 				return true;
 			}
 		}

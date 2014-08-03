@@ -56,15 +56,17 @@ public class HulplijnStefan extends JavaPlugin {
 		try{
 			File dataFolder = getDataFolder();
 			
-			File list = new File(dataFolder, "HelpList.txt");
-			if(list.getTotalSpace() == 0) sender.sendMessage(pluginMSG + "Nothing!");;
+			File list = new File(dataFolder, "/HelpList.txt");
+			if(!list.exists()) {sender.sendMessage(pluginMSG + "Nothing!");}
 			
-			BufferedReader br = new BufferedReader(new FileReader(dataFolder + "HelpList.txt"));
-			String str;
-			while((str = br.readLine()) != null){
-				sender.sendMessage(str);
+			if(list.exists()){
+				BufferedReader br = new BufferedReader(new FileReader(dataFolder + "/HelpList.txt"));
+				String str;
+				while((str = br.readLine()) != null){
+					sender.sendMessage(str);
+				}
+				br.close();
 			}
-			br.close();
 		}catch(Exception e){e.printStackTrace();}
 	}
 	
@@ -74,8 +76,7 @@ public class HulplijnStefan extends JavaPlugin {
 		
 		File list = new File(dataFolder, "HelpList.txt");
 		
-		list.delete();
-		list.createNewFile();
+		if(list.exists())list.delete();
 		
 		}catch(Exception e){e.printStackTrace();}
 		

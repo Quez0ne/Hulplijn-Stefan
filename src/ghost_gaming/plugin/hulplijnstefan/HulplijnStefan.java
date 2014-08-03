@@ -56,7 +56,10 @@ public class HulplijnStefan extends JavaPlugin {
 		try{
 			File dataFolder = getDataFolder();
 			
-			BufferedReader br = new BufferedReader(new FileReader(dataFolder + "/HelpList.txt"));
+			File list = new File(dataFolder, "HelpList.txt");
+			if(list.getTotalSpace() == 0) sender.sendMessage(pluginMSG + "Nothing!");;
+			
+			BufferedReader br = new BufferedReader(new FileReader(dataFolder + "HelpList.txt"));
 			String str;
 			while((str = br.readLine()) != null){
 				sender.sendMessage(str);

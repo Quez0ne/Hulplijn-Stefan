@@ -97,6 +97,12 @@ public class HulplijnStefan extends JavaPlugin {
 	                
 	                logToFile(player.getName()+ ": " + bc);
 	                player.sendMessage(pluginMSG + "Thank you " + player.getName() + ChatColor.DARK_AQUA +", Your question wil be awnserd as soon as possible!");
+	                Player[] ops = player.getServer().getOnlinePlayers();
+	                for(int j = 0; j < ops.length; j++){
+	                	Player target = ops[j];
+	                	if(target.hasPermission("hulplijnstefan.op")) target.sendMessage(pluginMSG + player.getName() + ": " + bc);
+	                	
+	                }
 	                return true;
 				}else{
 					player.sendMessage(pluginMSG + "" + ChatColor.RED + "Usage /stefan <args>");

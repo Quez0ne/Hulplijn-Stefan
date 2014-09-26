@@ -100,7 +100,7 @@ public class HulplijnStefan extends JavaPlugin {
 	                Player[] ops = player.getServer().getOnlinePlayers();
 	                for(int j = 0; j < ops.length; j++){
 	                	Player target = ops[j];
-	                	if(target.hasPermission("hulplijnstefan.op")) target.sendMessage(pluginMSG + player.getName() + ": " + bc);
+	                	if(target.hasPermission("hulplijnstefan.notify")) target.sendMessage(pluginMSG + player.getName() + ": " + bc);
 	                	
 	                }
 	                return true;

@@ -1,3 +1,2 @@
-BEZIG view HelpList.txt ingame (lastig)
 
 laat mensen weten dat de plugin bestaat (als ze inloggen of stefan zorgt ervoor)

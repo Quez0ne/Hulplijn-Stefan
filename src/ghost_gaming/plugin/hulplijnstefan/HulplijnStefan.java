@@ -139,23 +139,6 @@ public class HulplijnStefan extends JavaPlugin {
 					player.sendMessage(pluginMSG + "Clearing Helplist...");
 					clearList();
 					
-					/*FileOutputStream writer = null;
-					try {
-						writer = new FileOutputStream("HelpList.txt");
-					} catch (FileNotFoundException e) {
-						e1.printStackTrace();
-					}
-					try {
-						writer.write(0);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					try {
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}*/
-					
 					return true;
 				}else{
 					return true;
